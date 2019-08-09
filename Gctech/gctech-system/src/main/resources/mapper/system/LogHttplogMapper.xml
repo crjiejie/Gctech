@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gctech.system.mapper.LogHttplogMapper">
+
+    <resultMap type="LogHttplog" id="LogHttplogResult">
+        <result property="id" column="id"/>
+        <result property="ts" column="ts"/>
+        <result property="uid" column="uid"/>
+        <result property="origH" column="orig_h"/>
+        <result property="origP" column="orig_p"/>
+        <result property="respH" column="resp_h"/>
+        <result property="respP" column="resp_p"/>
+        <result property="transDepth" column="trans_depth"/>
+        <result property="method" column="method"/>
+        <result property="host" column="host"/>
+        <result property="referrer" column="referrer"/>
+        <result property="requestBodyLen" column="request_body_len"/>
+        <result property="responseBodyLen" column="response_body_len"/>
+        <result property="uri" column="uri"/>
+        <result property="userAgent" column="user_agent"/>
+        <result property="tags" column="tags"/>
+        <result property="headerHost" column="header_host"/>
+        <result property="headerAccept" column="header_accept"/>
+        <result property="headerAcceptEncoding" column="header_accept_encoding"/>
+        <result property="headerAcceptLanguage" column="header_accept_language"/>
+        <result property="headerConnection" column="header_connection"/>
+        <result property="origFuids" column="orig_fuids"/>
+        <result property="origMimeTypes" column="orig_mime_types"/>
+        <result property="postBody" column="post_body"/>
+        <result property="headerCookie" column="header_cookie"/>
+        <result property="headerContentType" column="header_content_type"/>
+    </resultMap>
+
+    <sql id="selectLogHttplogVo">
+        select id, ts, uid, orig_h, orig_p, resp_h, resp_p, trans_depth, method, host, referrer, request_body_len, response_body_len, uri, user_agent, tags, header_host, header_accept, header_accept_encoding, header_accept_language, header_connection, orig_fuids, orig_mime_types, post_body, header_cookie, header_content_type from log_httplog
+    </sql>
+
+    <select id="selectLogHttplogList" parameterType="LogHttplog" resultMap="LogHttplogResult">
+        <include refid="selectLogHttplogVo"/>
+        <where>
+            <if test="id != null ">and id = #{id}</if>
+            <if test="ts != null  and ts != '' ">and ts = #{ts}</if>
+            <if test="uid != null  and uid != '' ">and uid = #{uid}</if>
+            <if test="origH != null  and origH != '' ">and orig_h = #{origH}</if>
+            <if test="origP != null  and origP != '' ">and orig_p = #{origP}</if>
+            <if test="respH != null  and respH != '' ">and resp_h = #{respH}</if>
+            <if test="respP != null  and respP != '' ">and resp_p = #{respP}</if>
+            <if test="transDepth != null  and transDepth != '' ">and trans_depth = #{transDepth}</if>
+            <if test="method != null  and method != '' ">and method = #{method}</if>
+            <if test="host != null  and host != '' ">and host = #{host}</if>
+            <if test="referrer != null  and referrer != '' ">and referrer = #{referrer}</if>
+            <if test="requestBodyLen != null  and requestBodyLen != '' ">and request_body_len = #{requestBodyLen}</if>
+            <if test="responseBodyLen != null  and responseBodyLen != '' ">and response_body_len = #{responseBodyLen}
+            </if>
+            <if test="uri != null  and uri != '' ">and uri = #{uri}</if>
+            <if test="userAgent != null  and userAgent != '' ">and user_agent = #{userAgent}</if>
+            <if test="tags != null  and tags != '' ">and tags = #{tags}</if>
+            <if test="headerHost != null  and headerHost != '' ">and header_host = #{headerHost}</if>
+            <if test="headerAccept != null  and headerAccept != '' ">and header_accept = #{headerAccept}</if>
+            <if test="headerAcceptEncoding != null  and headerAcceptEncoding != '' ">and header_accept_encoding =
+                #{headerAcceptEncoding}
+            </if>
+            <if test="headerAcceptLanguage != null  and headerAcceptLanguage != '' ">and header_accept_language =
+                #{headerAcceptLanguage}
+            </if>
+            <if test="headerConnection != null  and headerConnection != '' ">and header_connection =
+                #{headerConnection}
+            </if>
+            <if test="origFuids != null  and origFuids != '' ">and orig_fuids = #{origFuids}</if>
+            <if test="origMimeTypes != null  and origMimeTypes != '' ">and orig_mime_types = #{origMimeTypes}</if>
+            <if test="postBody != null  and postBody != '' ">and post_body like concat('%',#{postBody},'%')</if>
+            <if test="headerCookie != null  and headerCookie != '' ">and header_cookie = #{headerCookie}</if>
+            <if test="headerContentType != null  and headerContentType != '' ">and header_content_type =
+                #{headerContentType}
+            </if>
+        </where>
+        ORDER BY ts DESC
+    </select>
+
+    <select id="selectLogHttplogById" parameterType="Long" resultMap="LogHttplogResult">
+        <include refid="selectLogHttplogVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertLogHttplog" parameterType="LogHttplog" useGeneratedKeys="true" keyProperty="id">
+        insert into log_httplog
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="ts != null  and ts != ''  ">ts,</if>
+            <if test="uid != null  and uid != ''  ">uid,</if>
+            <if test="origH != null  and origH != ''  ">orig_h,</if>
+            <if test="origP != null  and origP != ''  ">orig_p,</if>
+            <if test="respH != null  and respH != ''  ">resp_h,</if>
+            <if test="respP != null  and respP != ''  ">resp_p,</if>
+            <if test="transDepth != null  and transDepth != ''  ">trans_depth,</if>
+            <if test="method != null  and method != ''  ">method,</if>
+            <if test="host != null  and host != ''  ">host,</if>
+            <if test="referrer != null  and referrer != ''  ">referrer,</if>
+            <if test="requestBodyLen != null  and requestBodyLen != ''  ">request_body_len,</if>
+            <if test="responseBodyLen != null  and responseBodyLen != ''  ">response_body_len,</if>
+            <if test="uri != null  and uri != ''  ">uri,</if>
+            <if test="userAgent != null  and userAgent != ''  ">user_agent,</if>
+            <if test="tags != null  and tags != ''  ">tags,</if>
+            <if test="headerHost != null  and headerHost != ''  ">header_host,</if>
+            <if test="headerAccept != null  and headerAccept != ''  ">header_accept,</if>
+            <if test="headerAcceptEncoding != null  and headerAcceptEncoding != ''  ">header_accept_encoding,</if>
+            <if test="headerAcceptLanguage != null  and headerAcceptLanguage != ''  ">header_accept_language,</if>
+            <if test="headerConnection != null  and headerConnection != ''  ">header_connection,</if>
+            <if test="origFuids != null  and origFuids != ''  ">orig_fuids,</if>
+            <if test="origMimeTypes != null  and origMimeTypes != ''  ">orig_mime_types,</if>
+            <if test="postBody != null  and postBody != ''  ">post_body,</if>
+            <if test="headerCookie != null  and headerCookie != ''  ">header_cookie,</if>
+            <if test="headerContentType != null  and headerContentType != ''  ">header_content_type,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="ts != null  and ts != ''  ">#{ts},</if>
+            <if test="uid != null  and uid != ''  ">#{uid},</if>
+            <if test="origH != null  and origH != ''  ">#{origH},</if>
+            <if test="origP != null  and origP != ''  ">#{origP},</if>
+            <if test="respH != null  and respH != ''  ">#{respH},</if>
+            <if test="respP != null  and respP != ''  ">#{respP},</if>
+            <if test="transDepth != null  and transDepth != ''  ">#{transDepth},</if>
+            <if test="method != null  and method != ''  ">#{method},</if>
+            <if test="host != null  and host != ''  ">#{host},</if>
+            <if test="referrer != null  and referrer != ''  ">#{referrer},</if>
+            <if test="requestBodyLen != null  and requestBodyLen != ''  ">#{requestBodyLen},</if>
+            <if test="responseBodyLen != null  and responseBodyLen != ''  ">#{responseBodyLen},</if>
+            <if test="uri != null  and uri != ''  ">#{uri},</if>
+            <if test="userAgent != null  and userAgent != ''  ">#{userAgent},</if>
+            <if test="tags != null  and tags != ''  ">#{tags},</if>
+            <if test="headerHost != null  and headerHost != ''  ">#{headerHost},</if>
+            <if test="headerAccept != null  and headerAccept != ''  ">#{headerAccept},</if>
+            <if test="headerAcceptEncoding != null  and headerAcceptEncoding != ''  ">#{headerAcceptEncoding},</if>
+            <if test="headerAcceptLanguage != null  and headerAcceptLanguage != ''  ">#{headerAcceptLanguage},</if>
+            <if test="headerConnection != null  and headerConnection != ''  ">#{headerConnection},</if>
+            <if test="origFuids != null  and origFuids != ''  ">#{origFuids},</if>
+            <if test="origMimeTypes != null  and origMimeTypes != ''  ">#{origMimeTypes},</if>
+            <if test="postBody != null  and postBody != ''  ">#{postBody},</if>
+            <if test="headerCookie != null  and headerCookie != ''  ">#{headerCookie},</if>
+            <if test="headerContentType != null  and headerContentType != ''  ">#{headerContentType},</if>
+        </trim>
+    </insert>
+
+    <update id="updateLogHttplog" parameterType="LogHttplog">
+        update log_httplog
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="ts != null  and ts != ''  ">ts = #{ts},</if>
+            <if test="uid != null  and uid != ''  ">uid = #{uid},</if>
+            <if test="origH != null  and origH != ''  ">orig_h = #{origH},</if>
+            <if test="origP != null  and origP != ''  ">orig_p = #{origP},</if>
+            <if test="respH != null  and respH != ''  ">resp_h = #{respH},</if>
+            <if test="respP != null  and respP != ''  ">resp_p = #{respP},</if>
+            <if test="transDepth != null  and transDepth != ''  ">trans_depth = #{transDepth},</if>
+            <if test="method != null  and method != ''  ">method = #{method},</if>
+            <if test="host != null  and host != ''  ">host = #{host},</if>
+            <if test="referrer != null  and referrer != ''  ">referrer = #{referrer},</if>
+            <if test="requestBodyLen != null  and requestBodyLen != ''  ">request_body_len = #{requestBodyLen},</if>
+            <if test="responseBodyLen != null  and responseBodyLen != ''  ">response_body_len = #{responseBodyLen},</if>
+            <if test="uri != null  and uri != ''  ">uri = #{uri},</if>
+            <if test="userAgent != null  and userAgent != ''  ">user_agent = #{userAgent},</if>
+            <if test="tags != null  and tags != ''  ">tags = #{tags},</if>
+            <if test="headerHost != null  and headerHost != ''  ">header_host = #{headerHost},</if>
+            <if test="headerAccept != null  and headerAccept != ''  ">header_accept = #{headerAccept},</if>
+            <if test="headerAcceptEncoding != null  and headerAcceptEncoding != ''  ">header_accept_encoding =
+                #{headerAcceptEncoding},
+            </if>
+            <if test="headerAcceptLanguage != null  and headerAcceptLanguage != ''  ">header_accept_language =
+                #{headerAcceptLanguage},
+            </if>
+            <if test="headerConnection != null  and headerConnection != ''  ">header_connection = #{headerConnection},
+            </if>
+            <if test="origFuids != null  and origFuids != ''  ">orig_fuids = #{origFuids},</if>
+            <if test="origMimeTypes != null  and origMimeTypes != ''  ">orig_mime_types = #{origMimeTypes},</if>
+            <if test="postBody != null  and postBody != ''  ">post_body = #{postBody},</if>
+            <if test="headerCookie != null  and headerCookie != ''  ">header_cookie = #{headerCookie},</if>
+            <if test="headerContentType != null  and headerContentType != ''  ">header_content_type =
+                #{headerContentType},
+            </if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteLogHttplogById" parameterType="Long">
+        delete from log_httplog where id = #{id}
+    </delete>
+
+    <delete id="deleteLogHttplogByIds" parameterType="String">
+        delete from log_httplog where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="selectCount" parameterType="LogHttplog" resultType="Long">
+        select count(1) from log_httplog
+        <where>
+            <if test="id != null ">and id = #{id}</if>
+            <if test="ts != null  and ts != '' ">and ts &gt;= #{ts}</if>
+            <if test="uid != null  and uid != '' ">and uid = #{uid}</if>
+            <if test="origH != null  and origH != '' ">and orig_h = #{origH}</if>
+            <if test="origP != null  and origP != '' ">and orig_p = #{origP}</if>
+            <if test="respH != null  and respH != '' ">and resp_h = #{respH}</if>
+            <if test="respP != null  and respP != '' ">and resp_p = #{respP}</if>
+            <if test="transDepth != null  and transDepth != '' ">and trans_depth = #{transDepth}</if>
+            <if test="method != null  and method != '' ">and method = #{method}</if>
+            <if test="host != null  and host != '' ">and host = #{host}</if>
+            <if test="referrer != null  and referrer != '' ">and referrer = #{referrer}</if>
+            <if test="requestBodyLen != null  and requestBodyLen != '' ">and request_body_len = #{requestBodyLen}</if>
+            <if test="responseBodyLen != null  and responseBodyLen != '' ">and response_body_len = #{responseBodyLen}
+            </if>
+            <if test="uri != null  and uri != '' ">and uri = #{uri}</if>
+            <if test="userAgent != null  and userAgent != '' ">and user_agent = #{userAgent}</if>
+            <if test="tags != null  and tags != '' ">and tags = #{tags}</if>
+            <if test="headerHost != null  and headerHost != '' ">and header_host = #{headerHost}</if>
+            <if test="headerAccept != null  and headerAccept != '' ">and header_accept = #{headerAccept}</if>
+            <if test="headerAcceptEncoding != null  and headerAcceptEncoding != '' ">and header_accept_encoding =
+                #{headerAcceptEncoding}
+            </if>
+            <if test="headerAcceptLanguage != null  and headerAcceptLanguage != '' ">and header_accept_language =
+                #{headerAcceptLanguage}
+            </if>
+            <if test="headerConnection != null  and headerConnection != '' ">and header_connection =
+                #{headerConnection}
+            </if>
+            <if test="origFuids != null  and origFuids != '' ">and orig_fuids = #{origFuids}</if>
+            <if test="origMimeTypes != null  and origMimeTypes != '' ">and orig_mime_types = #{origMimeTypes}</if>
+            <if test="postBody != null  and postBody != '' ">and post_body like concat('%',#{postBody},'%')</if>
+            <if test="headerCookie != null  and headerCookie != '' ">and header_cookie = #{headerCookie}</if>
+            <if test="headerContentType != null  and headerContentType != '' ">and header_content_type =
+                #{headerContentType}
+            </if>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="include :: header('访问记录详情')"/>
+</head>
+<body class="white-bg">
+<section class="section-content">
+    <div class="row" style="margin:0 auto;">
+        <div class="col-xs-12 pr5">
+            <div class="ibox-content">
+                <ul class="list-group list-group-striped">
+                    <li class="list-group-item">
+                        <b class="font-noraml">ts：</b>
+                        <p class="pull-right">[[${logHttplog.ts}]]</p>
+                    </li>
+                    <li class="list-group-item">
+                        <b class="font-noraml">uid：</b>
+                        <p class="pull-right">[[${logHttplog.uid}]]</p>
+                    </li>
+                    <li class="list-group-item">
+                        <b class="font-noraml">origH：</b>
+                        <p class="pull-right">[[${logHttplog.origH}]]</p>
+                    </li>
+                    <li class="list-group-item">
+                        <b class="font-noraml">origP：</b>
+                        <p class="pull-right">[[${logHttplog.origP}]]</p>
+                    </li>
+                    <li class="list-group-item">
+                        <b class="font-noraml">respH：</b>
+                        <p class="pull-right">[[${logHttplog.respH}]]</p>
+                    </li>
+                    <li class="list-group-item">
+                        <b class="font-noraml">respP：</b>
+                        <p class="pull-right">[[${logHttplog.respP}]]</p>
+                    </li>
+                    <li class="list-group-item">
+                        <b class="font-noraml">transDepth：</b>
+                        <p class="pull-right">[[${logHttplog.transDepth}]]</p>
+                    </li>
+                    <li class="list-group-item">
+                        <b class="font-noraml">method：</b>
+                        <p class="pull-right">[[${logHttplog.method}]]</p>
+                    </li>
+                    <li class="list-group-item">
+                        <b class="font-noraml">host：</b>
+                        <p class="pull-right">[[${logHttplog.host}]]</p>
+                    </li>
+                    <li class="list-group-item">
+                        <b class="font-noraml">referrer：</b>
+                        <p class="pull-right">[[${logHttplog.referrer}]]</p>
+                    </li>
+                    <li class="list-group-item">
+                        <b class="font-noraml">requestBodyLen：</b>
+                        <p class="pull-right">[[${logHttplog.requestBodyLen}]]</p>
+                    </li>
+                    <li class="list-group-item">
+                        <b class="font-noraml">responseBodyLen：</b>
+                        <p class="pull-right">[[${logHttplog.responseBodyLen}]]</p>
+                    </li>
+                    <li class="list-group-item">
+                        <b class="font-noraml">uri：</b>
+                        <p class="pull-right">[[${logHttplog.uri}]]</p>
+                    </li>
+                    <li class="list-group-item">
+                        <b class="font-noraml">userAgent：</b>
+                        <p class="pull-right">[[${logHttplog.userAgent}]]</p>
+                    </li>
+                    <li class="list-group-item">
+                        <b class="font-noraml">tags：</b>
+                        <p class="pull-right">[[${logHttplog.tags}]]</p>
+                    </li>
+                    <li class="list-group-item">
+                        <b class="font-noraml">headerHost：</b>
+                        <p class="pull-right">[[${logHttplog.headerHost}]]</p>
+                    </li>
+                    <li class="list-group-item">
+                        <b class="font-noraml">headerAccept：</b>
+                        <p class="pull-right">[[${logHttplog.headerAccept}]]</p>
+                    </li>
+                    <li class="list-group-item">
+                        <b class="font-noraml">headerAcceptEncoding：</b>
+                        <p class="pull-right">[[${logHttplog.headerAcceptEncoding}]]</p>
+                    </li>
+                    <li class="list-group-item">
+                        <b class="font-noraml">headerAcceptLanguage：</b>
+                        <p class="pull-right">[[${logHttplog.headerAcceptLanguage}]]</p>
+                    </li>
+                    <li class="list-group-item">
+                        <b class="font-noraml">headerConnection：</b>
+                        <p class="pull-right">[[${logHttplog.headerConnection}]]</p>
+                    </li>
+                    <li class="list-group-item">
+                        <b class="font-noraml">origFuids：</b>
+                        <p class="pull-right">[[${logHttplog.origFuids}]]</p>
+                    </li>
+                    <li class="list-group-item">
+                        <b class="font-noraml">origMimeTypes：</b>
+                        <p class="pull-right">[[${logHttplog.origMimeTypes}]]</p>
+                    </li>
+                    <li class="list-group-item">
+                        <b class="font-noraml">postBody：</b>
+                        <p class="pull-right">[[${logHttplog.postBody}]]</p>
+                    </li>
+                    <li class="list-group-item">
+                        <b class="font-noraml">headerCookie：</b>
+                        <p class="pull-right">[[${logHttplog.headerCookie}]]</p>
+                    </li>
+                    <li class="list-group-item">
+                        <b class="font-noraml">headerContentType：</b>
+                        <p class="pull-right">[[${logHttplog.headerContentType}]]</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<div th:include="include::footer"></div>
+<script type="text/javascript">
+</script>
+<style>
+    .pull-right {
+        font-weight: bold;
+    }
+</style>
+</body>
+</html>

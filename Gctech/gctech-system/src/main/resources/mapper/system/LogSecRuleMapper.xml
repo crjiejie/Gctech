@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gctech.system.mapper.LogSecRuleMapper">
+    
+    <resultMap type="LogSecRule" id="LogSecRuleResult">
+        <result property="id"    column="id"    />
+        <result property="rule"    column="rule"    />
+        <result property="secTpye"    column="sec_tpye"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="remark"    column="remark"    />
+    </resultMap>
+	
+	<sql id="selectLogSecRuleVo">
+        select id, rule, sec_tpye, create_by, create_time, update_by, update_time, remark from log_sec_rule
+    </sql>
+	
+    <select id="selectLogSecRuleList" parameterType="LogSecRule" resultMap="LogSecRuleResult">
+        <include refid="selectLogSecRuleVo"/>
+        <where>  
+            <if test="id != null "> and id = #{id}</if>
+             <if test="rule != null  and rule != '' "> and rule = #{rule}</if>
+             <if test="secTpye != null  and secTpye != ''"> and sec_tpye = #{secTpye}</if>
+             <if test="createBy != null  and createBy != '' "> and create_by = #{createBy}</if>
+             <if test="createTime != null "> and create_time = #{createTime}</if>
+             <if test="updateBy != null  and updateBy != '' "> and update_by = #{updateBy}</if>
+             <if test="updateTime != null "> and update_time = #{updateTime}</if>
+             <if test="remark != null  and remark != '' "> and remark = #{remark}</if>
+         </where>
+    </select>
+    
+    <select id="selectLogSecRuleById" parameterType="Long" resultMap="LogSecRuleResult">
+        <include refid="selectLogSecRuleVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertLogSecRule" parameterType="LogSecRule" useGeneratedKeys="true" keyProperty="id">
+        insert into log_sec_rule
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="rule != null  and rule != ''  ">rule,</if>
+			<if test="secTpye != null  ">sec_tpye,</if>
+			<if test="createBy != null  and createBy != ''  ">create_by,</if>
+			<if test="createTime != null  ">create_time,</if>
+			<if test="updateBy != null  and updateBy != ''  ">update_by,</if>
+			<if test="updateTime != null  ">update_time,</if>
+			<if test="remark != null  and remark != ''  ">remark,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="rule != null  and rule != ''  ">#{rule},</if>
+			<if test="secTpye != null  ">#{secTpye},</if>
+			<if test="createBy != null  and createBy != ''  ">#{createBy},</if>
+			<if test="createTime != null  ">#{createTime},</if>
+			<if test="updateBy != null  and updateBy != ''  ">#{updateBy},</if>
+			<if test="updateTime != null  ">#{updateTime},</if>
+			<if test="remark != null  and remark != ''  ">#{remark},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateLogSecRule" parameterType="LogSecRule">
+        update log_sec_rule
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="rule != null  and rule != ''  ">rule = #{rule},</if>
+            <if test="secTpye != null  ">sec_tpye = #{secTpye},</if>
+            <if test="createBy != null  and createBy != ''  ">create_by = #{createBy},</if>
+            <if test="createTime != null  ">create_time = #{createTime},</if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by = #{updateBy},</if>
+            <if test="updateTime != null  ">update_time = #{updateTime},</if>
+            <if test="remark != null  and remark != ''  ">remark = #{remark},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+	<delete id="deleteLogSecRuleById" parameterType="Long">
+        delete from log_sec_rule where id = #{id}
+    </delete>
+	
+    <delete id="deleteLogSecRuleByIds" parameterType="String">
+        delete from log_sec_rule where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>
